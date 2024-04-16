@@ -1,31 +1,75 @@
 # Streamlitライブラリをインポート
 import streamlit as st
+import numpy as np
+import time
 
-# ページ設定（タブに表示されるタイトル、表示幅）
-st.set_page_config(page_title="タイトル", layout="wide")
+# ゲームの設定
+ROWS = 20
+COLS = 10
+BLOCK_SIZE = 30
+FPS = 5
 
-# タイトルを設定
-st.title('Streamlitのサンプルアプリ')
+# テトリスのブロック
+blocks = [
+    np.array([[1, 1], [1, 1]]),  # 四角
+    np.array([[1, 1, 1, 1]]),    # 棒
+    np.array([[1, 1, 0], [0, 1, 1]]),  # Z
+    np.array([[0, 1, 1], [1, 1, 0]]),  # 反対Z
+    np.array([[0, 1, 0], [1, 1, 1]]),  # L
+    np.array([[1, 0, 0], [1, 1, 1]]),  # 反対L
+    np.array([[1, 1, 1], [0, 1, 0]])   # T
+]
 
-# テキスト入力ボックスを作成し、ユーザーからの入力を受け取る
-user_input = st.text_input('あなたの名前を入力してください')
+def update_board(board, block, pos):
+    rows, cols = block.shape
+    for r in range(rows):
+        for c in range(cols):
+            if block[r, c] == 1:
+                board[pos[0] + r, pos[1] + c] = 1
+    return board
 
-# ボタンを作成し、クリックされたらメッセージを表示
-if st.button('挨拶する'):
-    if user_input:  # 名前が入力されているかチェック
-        st.success(f'🌟 こんにちは、{user_input}さん! 🌟')  # メッセージをハイライト
-    else:
-        st.error('名前を入力してください。')  # エラーメッセージを表示
+def create_new_block():
+    return blocks[np.random.randint(len(blocks))]
 
-# スライダーを作成し、値を選択
-number = st.slider('好きな数字（10進数）を選んでください', 0, 100)
+def main():
+    st.title("Streamlit Tetris")
 
-# 補足メッセージ
-st.caption("十字キー（左右）でも調整できます。")
+    # 初期化
+    board = np.zeros((ROWS, COLS))
+    current_block = create_new_block()
+    block_pos = [0, COLS // 2 - current_block.shape[1] // 2]
 
-# 選択した数字を表示
-st.write(f'あなたが選んだ数字は「{number}」です。')
+    while True:
+        st.write("Score: 0")
+        st.write("Use Arrow Keys to Move the Block")
 
-# 選択した数値を2進数に変換
-binary_representation = bin(number)[2:]  # 'bin'関数で2進数に変換し、先頭の'0b'を取り除く
-st.info(f'🔢 10進数の「{number}」を2進数で表現すると「{binary_representation}」になります。 🔢')  # 2進数の表示をハイライト
+        # ボードの描画
+        for row in range(ROWS):
+            for col in range(COLS):
+                if board[row, col] == 1:
+                    st.markdown('<div style="background-color: blue; width: {0}px; height: {0}px;"></div>'.format(BLOCK_SIZE), unsafe_allow_html=True)
+                else:
+                    st.markdown('<div style="background-color: white; width: {0}px; height: {0}px;"></div>'.format(BLOCK_SIZE), unsafe_allow_html=True)
+
+        # ブロックの描画
+        for row in range(current_block.shape[0]):
+            for col in range(current_block.shape[1]):
+                if current_block[row, col] == 1:
+                    st.markdown('<div style="background-color: red; width: {0}px; height: {0}px;"></div>'.format(BLOCK_SIZE), unsafe_allow_html=True)
+
+        # 一時停止して次のアクションを待機
+        time.sleep(1/FPS)
+
+        # ブロックの移動
+        block_pos[0] += 1
+
+        # ボードの更新
+        board = update_board(board, current_block, block_pos)
+
+        # 新しいブロックの生成
+        if block_pos[0] + current_block.shape[0] >= ROWS:
+            block_pos = [0, COLS // 2 - current_block.shape[1] // 2]
+            current_block = create_new_block()
+
+if __name__ == "__main__":
+    main()
