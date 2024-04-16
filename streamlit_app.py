@@ -15,21 +15,22 @@ def slot_machine_ui():
 
     st.write("Press the button to spin each reel!")
 
-    reels = [st.empty() for _ in range(num_reels)]
-    spin_buttons = [st.button(f"Spin Reel {i+1}") for i in range(num_reels)]
-
     results = []
 
     for i in range(num_reels):
-        if spin_buttons[i]:
+        if st.button(f"Spin Reel {i+1}"):
             result = spin_reel()
-            reels[i].write(result)
             results.append(result)
+
+    if results:
+        st.write("Results:")
+        for result in results:
+            st.write(result)
     
-    if all(results) and results.count(results[0]) == len(results):
-        st.success("You win!")
-    elif results:
-        st.error("Try again!")
+        if len(set(results)) == 1:
+            st.success("You win!")
+        else:
+            st.error("Try again!")
 
 def main():
     slot_machine_ui()
