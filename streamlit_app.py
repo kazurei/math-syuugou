@@ -1,75 +1,37 @@
 # Streamlitライブラリをインポート
 import streamlit as st
-import numpy as np
-import time
+import random
 
-# ゲームの設定
-ROWS = 20
-COLS = 10
-BLOCK_SIZE = 30
-FPS = 5
+# シンボル
+symbols = ["🍒", "🍊", "🍋", "🍉", "🍇", "🔔", "💎", "⭐"]
 
-# テトリスのブロック
-blocks = [
-    np.array([[1, 1], [1, 1]]),  # 四角
-    np.array([[1, 1, 1, 1]]),    # 棒
-    np.array([[1, 1, 0], [0, 1, 1]]),  # Z
-    np.array([[0, 1, 1], [1, 1, 0]]),  # 反対Z
-    np.array([[0, 1, 0], [1, 1, 1]]),  # L
-    np.array([[1, 0, 0], [1, 1, 1]]),  # 反対L
-    np.array([[1, 1, 1], [0, 1, 0]])   # T
-]
+# リールの数
+num_reels = 3
 
-def update_board(board, block, pos):
-    rows, cols = block.shape
-    for r in range(rows):
-        for c in range(cols):
-            if block[r, c] == 1:
-                board[pos[0] + r, pos[1] + c] = 1
-    return board
+# スロットの初期設定
+def initialize_slot_machine():
+    return [random.choice(symbols) for _ in range(num_reels)]
 
-def create_new_block():
-    return blocks[np.random.randint(len(blocks))]
+# スロットを回す
+def spin_slot_machine():
+    return [random.choice(symbols) for _ in range(num_reels)]
+
+# スロットマシンのUI
+def slot_machine_ui():
+    st.title("Streamlit Slot Machine")
+
+    st.write("Press the button to spin the reels!")
+
+    if st.button("Spin"):
+        result = spin_slot_machine()
+        st.write(result)
+        if result.count(result[0]) == len(result):
+            st.success("You win!")
+        else:
+            st.error("Try again!")
 
 def main():
-    st.title("Streamlit Tetris")
-
-    # 初期化
-    board = np.zeros((ROWS, COLS))
-    current_block = create_new_block()
-    block_pos = [0, COLS // 2 - current_block.shape[1] // 2]
-
-    while True:
-        st.write("Score: 0")
-        st.write("Use Arrow Keys to Move the Block")
-
-        # ボードの描画
-        for row in range(ROWS):
-            for col in range(COLS):
-                if board[row, col] == 1:
-                    st.markdown('<div style="background-color: blue; width: {0}px; height: {0}px;"></div>'.format(BLOCK_SIZE), unsafe_allow_html=True)
-                else:
-                    st.markdown('<div style="background-color: white; width: {0}px; height: {0}px;"></div>'.format(BLOCK_SIZE), unsafe_allow_html=True)
-
-        # ブロックの描画
-        for row in range(current_block.shape[0]):
-            for col in range(current_block.shape[1]):
-                if current_block[row, col] == 1:
-                    st.markdown('<div style="background-color: red; width: {0}px; height: {0}px;"></div>'.format(BLOCK_SIZE), unsafe_allow_html=True)
-
-        # 一時停止して次のアクションを待機
-        time.sleep(1/FPS)
-
-        # ブロックの移動
-        block_pos[0] += 1
-
-        # ボードの更新
-        board = update_board(board, current_block, block_pos)
-
-        # 新しいブロックの生成
-        if block_pos[0] + current_block.shape[0] >= ROWS:
-            block_pos = [0, COLS // 2 - current_block.shape[1] // 2]
-            current_block = create_new_block()
+    slot_machine_ui()
 
 if __name__ == "__main__":
     main()
