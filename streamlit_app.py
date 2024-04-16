@@ -21,12 +21,9 @@ def slot_machine_ui():
         if st.button(f"Spin Reel {i+1}"):
             result = spin_reel()
             results.append(result)
+            st.write(f"Reel {i+1} Result: {result}")
 
     if results:
-        st.write("Results:")
-        for result in results:
-            st.write(result)
-    
         if len(set(results)) == 1:
             st.success("You win!")
         else:
