@@ -5,10 +5,6 @@ import random
 # シンボル
 symbols = ["🍒", "🍊", "🍋", "🍉", "🍇", "🔔", "💎", "⭐"]
 
-# スロットの初期設定
-def initialize_slot_machine():
-    return [random.choice(symbols) for _ in range(num_reels)]
-
 # スロットを回す
 def spin_reel():
     return random.choice(symbols)
@@ -22,15 +18,18 @@ def slot_machine_ui():
     reels = [st.empty() for _ in range(num_reels)]
     spin_buttons = [st.button(f"Spin Reel {i+1}") for i in range(num_reels)]
 
-    if all(spin_buttons):
-        results = [spin_reel() for _ in range(num_reels)]
-        for i in range(num_reels):
-            reels[i].write(results[i])
-        
-        if results.count(results[0]) == len(results):
-            st.success("You win!")
-        else:
-            st.error("Try again!")
+    results = []
+
+    for i in range(num_reels):
+        if spin_buttons[i]:
+            result = spin_reel()
+            reels[i].write(result)
+            results.append(result)
+    
+    if all(results) and results.count(results[0]) == len(results):
+        st.success("You win!")
+    elif results:
+        st.error("Try again!")
 
 def main():
     slot_machine_ui()
