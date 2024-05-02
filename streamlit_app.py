@@ -4,8 +4,8 @@ import random
 
 st.title("ガチャガチャアプリ")
 
-options = ["アイテム1", "アイテム2", "アイテム3", "アイテム4", "アイテム5"]  # ガチャのアイテムリスト
+if st.button("回す");
 
-if st.button("ガチャを引く"):
-    result = random.choice(options)  # ランダムにアイテムを選択
-    st.write("結果：", result)  # 結果を表示
+results=("大吉","中吉","小吉」")
+result=ramdom.choice(result)
+st.write(f"結果:{result}")
