@@ -2,7 +2,9 @@ import streamlit as st
 
 import random
 
-    if st.button("おみくじを引く"):
+st.title("おみくじ")
+
+if st.button("おみくじを引く"):
 
     results=["大吉","中吉","小吉"]
 
