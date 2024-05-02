@@ -4,7 +4,7 @@ import random
 
 st.title("おみくじアプリ")
 
- set.button("おみくじを引く")
+    if st.button("おみくじを引く"):
 
     results=["大吉","中吉","小吉"]
 
