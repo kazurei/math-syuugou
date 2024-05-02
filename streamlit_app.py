@@ -2,7 +2,7 @@
 import streamlit as st
 import random
 
-st.title("ガチャガチャアプリ")
+st.title("おみくじアプリ")
 
 if st.button("回す");
 
