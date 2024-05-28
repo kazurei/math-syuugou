@@ -22,6 +22,7 @@ b_barmataha = B_bar | syuugoua  #ＡまたはＢバー
 a_barkatub_bar = A_bar & B_bar  #ＡバーかつＢバー
 a_barmataha_bar = A_bar | B_bar #ＡバーまたはＢバー
 
+
 st.write("AかつB:", katu)
 st.write("AまたはB:", mataha)
 st.write("ＡバーかつＢ", a_barkatu)
