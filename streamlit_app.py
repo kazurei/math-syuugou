@@ -30,3 +30,4 @@ st.write("ＡかつＢバー", b_barkatu)
 st.write("ＡまたはＢバー", b_barmataha)
 st.write("ＡバーかつＢバー", a_barkatub_bar)
 st.write("ＡバーまたはＢバー", a_barmataha_bar)
+
