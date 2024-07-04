@@ -1,10 +1,4 @@
 import streamlit as st
-import matplotlib
-matplotlib.use('Agg')
-
-import matplotlib.pyplot as plt
-import venn
-
 st.title("集合を求める")
 U = st.text_input("全体集合を入力してください")
 zentaisyuugouu = set(U.split())
