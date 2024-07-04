@@ -30,7 +30,3 @@ st.write("ＡかつＢバー", b_barkatu)
 st.write("ＡまたはＢバー", b_barmataha)
 st.write("ＡバーかつＢバー", a_barkatub_bar)
 st.write("ＡバーまたはＢバー", a_barmataha_bar)
-
-venn2([syuugoua,syuugoub]("集合A","集合B"))
-plt.text(0, 0, "Universal Set", color='blue', ha='center', va='center', fontsize=10, bbox=dict(facecolor='white', alpha=0.5))
-st.pyplot()
