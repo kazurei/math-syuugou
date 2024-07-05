@@ -1,6 +1,7 @@
 import streamlit as st
 import matplotlib.pyplot as plt
 from matplotlib_venn import venn2, venn2_circles
+import numpy as np
 
 def main():
     st.title("集合を求める")
@@ -40,10 +41,12 @@ def main():
     v = venn2(subsets=(len(syuugoua - syuugoua & syuugoub), len(syuugoub - syuugoua & syuugoub), len(syuugoua & syuugoub)), set_labels=('A', 'B'))
     venn2_circles(subsets=(len(syuugoua), len(syuugoub), len(syuugoua & syuugoub)))
     plt.title("ベン図")  # ベン図のタイトルを設定
-    plt.annotate('AかつB', xy=v.get_label_by_id('11').get_position() - np.array([0, 0.05]), xytext=(-70,-70),
+
+    # 注釈を追加
+    plt.annotate('AかつB', xy=v.get_label_by_ids(['10']).get_position() - np.array([0, 0.05]), xytext=(-70,-70),
                  ha='center', textcoords='offset points', bbox=dict(boxstyle='round,pad=0.5', fc='gray', alpha=0.1),
                  arrowprops=dict(arrowstyle='->', connectionstyle='arc3,rad=0.5',color='gray'))
-    plt.annotate('AまたはB', xy=v.get_label_by_id('10').get_position() - np.array([0, 0.05]), xytext=(70,-70),
+    plt.annotate('AまたはB', xy=v.get_label_by_ids(['01', '10', '11']).get_position() - np.array([0, 0.05]), xytext=(70,-70),
                  ha='center', textcoords='offset points', bbox=dict(boxstyle='round,pad=0.5', fc='gray', alpha=0.1),
                  arrowprops=dict(arrowstyle='->', connectionstyle='arc3,rad=-0.5',color='gray'))
 
