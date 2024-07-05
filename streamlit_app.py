@@ -10,7 +10,7 @@ def main():
     A = st.text_input("集合Aを入力してください")
     B = st.text_input("集合Bを入力してください")
 
-    # 集合を作成
+    # 入力された文字列を空白で分割して集合に変換
     zentaisyuugouu = set(U.split())
     syuugoua = set(A.split())
     syuugoub = set(B.split())
