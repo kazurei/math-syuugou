@@ -1,34 +1,48 @@
 import streamlit as st
 import matplotlib.pyplot as plt
-import numpy as np
-st.title("集合を求める")
-U = st.text_input("全体集合を入力してください")
-zentaisyuugouu = set(U.split())
+from matplotlib_venn import venn2
 
-A = st.text_input("集合Aを入力してください")
-B = st.text_input("集合Bを入力してください")
+def main():
+    st.title("集合を求める")
 
-syuugoua = set(A.split())
-syuugoub = set(B.split())
+    # 入力フォーム
+    U = st.text_input("全体集合を入力してください")
+    A = st.text_input("集合Aを入力してください")
+    B = st.text_input("集合Bを入力してください")
 
-katu = syuugoua & syuugoub   #AかつＢ
-mataha = syuugoua | syuugoub #ＡまたはＢ
+    # 集合を作成
+    zentaisyuugouu = set(U.split())
+    syuugoua = set(A.split())
+    syuugoub = set(B.split())
 
-A_bar = zentaisyuugouu - syuugoua
-B_bar = zentaisyuugouu - syuugoub
+    # 集合演算
+    katu = syuugoua & syuugoub   # AかつB
+    mataha = syuugoua | syuugoub # AまたはB
+    a_barkatu = (zentaisyuugouu - syuugoua) & syuugoub    # AバーかつB
+    a_barmataha = (zentaisyuugouu - syuugoua) | syuugoub  # AバーまたはB
+    b_barkatu = (zentaisyuugouu - syuugoub) & syuugoua    # AかつBバー
+    b_barmataha = (zentaisyuugouu - syuugoub) | syuugoua  # AまたはBバー
+    a_barkatub_bar = (zentaisyuugouu - syuugoua) & (zentaisyuugouu - syuugoub)  # AバーかつBバー
+    a_barmataha_bar = (zentaisyuugouu - syuugoua) | (zentaisyuugouu - syuugoub)  # AバーまたはBバー
 
-a_barkatu = A_bar & syuugoub    #ＡバーかつＢ
-a_barmataha = A_bar | syuugoub  #ＡバーまたはＢ
-b_barkatu = B_bar & syuugoua    #ＡかつＢバー
-b_barmataha = B_bar | syuugoua  #ＡまたはＢバー
-a_barkatub_bar = A_bar & B_bar  #ＡバーかつＢバー
-a_barmataha_bar = A_bar | B_bar #ＡバーまたはＢバー
+    # 結果の表示
+    st.write("AかつB:", katu)
+    st.write("AまたはB:", mataha)
+    st.write("ＡバーかつＢ:", a_barkatu)
+    st.write("ＡバーまたはＢ:", a_barmataha)
+    st.write("ＡかつＢバー:", b_barkatu)
+    st.write("ＡまたはＢバー:", b_barmataha)
+    st.write("ＡバーかつＢバー:", a_barkatub_bar)
+    st.write("ＡバーまたはＢバー:", a_barmataha_bar)
 
-st.write("AかつB:", katu)
-st.write("AまたはB:", mataha)
-st.write("ＡバーかつＢ", a_barkatu)
-st.write("ＡバーまたはＢ", a_barmataha)
-st.write("ＡかつＢバー", b_barkatu)
-st.write("ＡまたはＢバー", b_barmataha)
-st.write("ＡバーかつＢバー", a_barkatub_bar)
-st.write("ＡバーまたはＢバー", a_barmataha_bar)
+    # ベン図の作成と表示
+    plt.figure(figsize=(8, 6))
+    venn2(subsets=(len(syuugoua - syuugoua & syuugoub), len(syuugoub - syuugoua & syuugoub), len(syuugoua & syuugoub)), set_labels=('A', 'B'))
+    plt.title("集合のベン図")
+    plt.tight_layout()
+
+    # ベン図を画像として表示
+    st.pyplot(plt)
+
+if __name__ == "__main__":
+    main()
