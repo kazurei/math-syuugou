@@ -38,7 +38,7 @@ def main():
     # ベン図の作成と表示
     plt.figure(figsize=(8, 6))
     venn2(subsets=(len(syuugoua - syuugoua & syuugoub), len(syuugoub - syuugoua & syuugoub), len(syuugoua & syuugoub)), set_labels=('A', 'B'))
-    plt.title("集合のベン図")
+    plt.title("ベン図")  # ベン図のタイトルを設定
     plt.tight_layout()
 
     # ベン図を画像として表示
