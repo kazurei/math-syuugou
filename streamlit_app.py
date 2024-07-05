@@ -1,4 +1,6 @@
 import streamlit as st
+import matplotlib.pyplot as plt
+import numpy as np
 st.title("集合を求める")
 U = st.text_input("全体集合を入力してください")
 zentaisyuugouu = set(U.split())
