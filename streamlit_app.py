@@ -38,7 +38,7 @@ def main():
     # ベン図の作成と表示
     plt.figure(figsize=(8, 6))
     v = venn2(subsets=(len(syuugoua - syuugoua & syuugoub), len(syuugoub - syuugoua & syuugoub), len(syuugoua & syuugoub)), set_labels=('A', 'B'))
-    venn2_circles(subsets=(katu, mataha, a_barkatu))
+    venn2_circles(subsets=(len(syuugoua), len(syuugoub), len(syuugoua & syuugoub)))
     plt.title("ベン図")  # ベン図のタイトルを設定
     plt.annotate('AかつB', xy=v.get_label_by_id('11').get_position() - np.array([0, 0.05]), xytext=(-70,-70),
                  ha='center', textcoords='offset points', bbox=dict(boxstyle='round,pad=0.5', fc='gray', alpha=0.1),
