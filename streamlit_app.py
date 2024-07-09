@@ -37,7 +37,7 @@ def main():
 
     # ベン図の作成と表示
     plt.figure(figsize=(8, 6))
-    venn2(subsets=[syuugoua],[syuugoub]), set_labels=('A', 'B')
+    venn2(subsets=[(syuugoua, syuugoub)], set_labels=('A', 'B'))
     plt.title("venn diagram")  # ベン図のタイトルを設定
     plt.tight_layout()
 
