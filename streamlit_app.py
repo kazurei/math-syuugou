@@ -43,6 +43,7 @@ def main():
 
     # ベン図を画像として表示
     st.pyplot(plt)
+    st.write("このベン図は各集合の中にある要素の数を表しています")
 
 if __name__ == "__main__":
     main()
