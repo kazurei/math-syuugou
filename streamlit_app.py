@@ -35,8 +35,22 @@ def main():
     st.write("ＡまたはＢバー:", b_barmataha)
     st.write("ＡバーかつＢバー:", a_barkatub_bar)
     st.write("ＡバーまたはＢバー:", a_barmataha_bar)
+    if katu == set() :
+        st.write("AかつB:","空集合")
+    if mataha == set() :
+        st.write("AまたはB:","空集合")
+    if a_barkatu == set() :
+        st.write("ＡバーかつＢ:","空集合")
+    if a_barmataha  == set() :
+        st.write("ＡバーまたはＢ:","空集合")
+    if b_barkatu == set() :
+        st.write("ＡかつＢバー:","空集合")
+    if b_barmataha == set() :
+        st.write("ＡまたはＢバー:","空集合")
     if a_barkatub_bar == set() :
         st.write("ＡバーかつＢバー:","空集合")
+    if a_barmataha_bar == set() :
+        st.write("ＡバーまたはＢバー:","空集合")
     # ベン図の作成と表示
     plt.figure(figsize=(8, 6))
     venn2(subsets=(syuugoua, syuugoub), set_labels=('A', 'B'))
