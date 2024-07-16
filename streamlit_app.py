@@ -35,6 +35,8 @@ def main():
     st.write("ＡまたはＢバー:", b_barmataha)
     st.write("ＡバーかつＢバー:", a_barkatub_bar)
     st.write("ＡバーまたはＢバー:", a_barmataha_bar)
+    if a_barkatub_bar == set() :
+        st.write("空集合")
     # ベン図の作成と表示
     plt.figure(figsize=(8, 6))
     venn2(subsets=(syuugoua, syuugoub), set_labels=('A', 'B'))
