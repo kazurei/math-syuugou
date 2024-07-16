@@ -12,9 +12,9 @@ def main():
     B = st.text_input("集合Bを入力してください")
 
     # 空の場合は空集合として扱う
-    zentaisyuugouu = set(U.split()) if U else st.write("空集合")
-    syuugoua = set(A.split()) if A else st.write("空集合")
-    syuugoub = set(B.split()) if B else st.write("空集合")
+    zentaisyuugouu = set(U.split()) if U else set()
+    syuugoua = set(A.split()) if A else set()
+    syuugoub = set(B.split()) if B else set()
 
     # 集合演算
     katu = syuugoua & syuugoub   # AかつB
