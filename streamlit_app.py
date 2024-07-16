@@ -6,6 +6,7 @@ def main():
     st.title("集合を求める")
 
     # 入力フォーム
+    st.write("全角と半角を混同して使用しないでください")
     U = st.text_input("全体集合を入力してください")
     A = st.text_input("集合Aを入力してください")
     B = st.text_input("集合Bを入力してください")
