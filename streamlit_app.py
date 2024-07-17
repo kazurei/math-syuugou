@@ -27,14 +27,14 @@ def main():
     a_barmataha_bar = (zentaisyuugouu - syuugoua) | (zentaisyuugouu - syuugoub)  # AバーまたはBバー
 
     # 結果の表示
-    #z = st.write("AかつB:", katu)
-    #x = st.write("AまたはB:", mataha)
-   # c = st.write("ＡバーかつＢ:", a_barkatu)
-   # v = st.write("ＡバーまたはＢ:", a_barmataha)
-   # n = st.write("ＡかつＢバー:", b_barkatu)
-  #  m = st.write("ＡまたはＢバー:", b_barmataha)
-  #  k = st.write("ＡバーかつＢバー:", a_barkatub_bar)
-   # l = st.write("ＡバーまたはＢバー:", a_barmataha_bar)
+    z = st.write("AかつB:", katu)
+    x = st.write("AまたはB:", mataha)
+    c = st.write("ＡバーかつＢ:", a_barkatu)
+    v = st.write("ＡバーまたはＢ:", a_barmataha)
+    n = st.write("ＡかつＢバー:", b_barkatu)
+    m = st.write("ＡまたはＢバー:", b_barmataha)
+    k = st.write("ＡバーかつＢバー:", a_barkatub_bar)
+    l = st.write("ＡバーまたはＢバー:", a_barmataha_bar)
     if katu == set() :
         z = st.write("AかつB:","空集合")
     if mataha == set() :
