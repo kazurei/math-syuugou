@@ -27,7 +27,7 @@ def main():
     a_barmataha_bar = (zentaisyuugouu - syuugoua) | (zentaisyuugouu - syuugoub)  # AバーまたはBバー
 
     # 結果の表示
-    z = ("AかつB:", katu)
+    z = ("AかつB:", (katu))
     x = ("AまたはB:", mataha)
     c = ("ＡバーかつＢ:", a_barkatu)
     v = ("ＡバーまたはＢ:", a_barmataha)
