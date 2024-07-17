@@ -27,37 +27,46 @@ def main():
     a_barmataha_bar = (zentaisyuugouu - syuugoua) | (zentaisyuugouu - syuugoub)  # AバーまたはBバー
 
     # 結果の表示
-    z = ("AかつB:", (katu))
-    x = ("AまたはB:", mataha)
-    c = ("ＡバーかつＢ:", a_barkatu)
-    v = ("ＡバーまたはＢ:", a_barmataha)
-    n = ("ＡかつＢバー:", b_barkatu)
-    m = ("ＡまたはＢバー:", b_barmataha)
-    k = ("ＡバーかつＢバー:", a_barkatub_bar)
-    l = ("ＡバーまたはＢバー:", a_barmataha_bar)
-    if katu == set() :
-        z = st.write("AかつB:","空集合")
-    if mataha == set() :
-        x = st.write("AまたはB:","空集合")
-    if a_barkatu == set() :
-        c = st.write("ＡバーかつＢ:","空集合")
-    if a_barmataha  == set() :
-        v = st.write("ＡバーまたはＢ:","空集合")
-    if b_barkatu == set() :
-        n = st.write("ＡかつＢバー:","空集合")
-    if b_barmataha == set() :
-        m = st.write("ＡまたはＢバー:","空集合")
-    if a_barkatub_bar == set() :
-        k = st.write("ＡバーかつＢバー:","空集合")
-    if a_barmataha_bar == set() :
-        l = st.write("ＡバーまたはＢバー:","空集合")
-    st.write(z)
-    st.write(x)
-    st.write(c)
-    st.write(n)
-    st.write(m)
-    st.write(k)
-    st.write(l)
+    if katu == set():
+        st.write("AかつB:", "空集合")
+    else:
+        st.write("AかつB:", katu)
+
+    if mataha == set():
+        st.write("AまたはB:", "空集合")
+    else:
+        st.write("AまたはB:", mataha)
+
+    if a_barkatu == set():
+        st.write("ＡバーかつＢ:", "空集合")
+    else:
+        st.write("ＡバーかつＢ:", a_barkatu)
+
+    if a_barmataha == set():
+        st.write("ＡバーまたはＢ:", "空集合")
+    else:
+        st.write("ＡバーまたはＢ:", a_barmataha)
+
+    if b_barkatu == set():
+        st.write("ＡかつＢバー:", "空集合")
+    else:
+        st.write("ＡかつＢバー:", b_barkatu)
+
+    if b_barmataha == set():
+        st.write("ＡまたはＢバー:", "空集合")
+    else:
+        st.write("ＡまたはＢバー:", b_barmataha)
+
+    if a_barkatub_bar == set():
+        st.write("ＡバーかつＢバー:", "空集合")
+    else:
+        st.write("ＡバーかつＢバー:", a_barkatub_bar)
+
+    if a_barmataha_bar == set():
+        st.write("ＡバーまたはＢバー:", "空集合")
+    else:
+        st.write("ＡバーまたはＢバー:", a_barmataha_bar)
+
     # ベン図の作成と表示
     plt.figure(figsize=(8, 6))
     venn2(subsets=(syuugoua, syuugoub), set_labels=('A', 'B'))
