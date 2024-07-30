@@ -26,7 +26,6 @@ def main():
     a_barkatub_bar = (zentaisyuugouu - syuugoua) & (zentaisyuugouu - syuugoub)  # AバーかつBバー
     a_barmataha_bar = (zentaisyuugouu - syuugoua) | (zentaisyuugouu - syuugoub)  # AバーまたはBバー
 
-    # 結果の表示
     if katu == set():
         st.write("AかつB:", "空集合")
     else:
