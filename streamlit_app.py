@@ -1,7 +1,6 @@
 import streamlit as st
 import matplotlib.pyplot as plt
 from matplotlib_venn import venn2
-st.page_link("集合")
 
 def main():
     st.title("集合を求める")
