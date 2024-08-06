@@ -5,18 +5,15 @@ from matplotlib_venn import venn2
 def main():
     st.title("集合を求める")
 
-    # 入力フォーム
     st.write("全角と半角を混同して使用しないでください")
     U = st.text_input("全体集合を入力してください")
     A = st.text_input("集合Aを入力してください")
     B = st.text_input("集合Bを入力してください")
 
-    # 空の場合は空集合として扱う
     zentaisyuugouu = set(U.split()) if U else set()
     syuugoua = set(A.split()) if A else set()
     syuugoub = set(B.split()) if B else set()
 
-    # 集合演算
     katu = syuugoua & syuugoub   # AかつB
     mataha = syuugoua | syuugoub # AまたはB
     a_barkatu = (zentaisyuugouu - syuugoua) & syuugoub    # AバーかつB
@@ -66,13 +63,11 @@ def main():
     else:
         st.write("ＡバーまたはＢバー:", a_barmataha_bar)
 
-    # ベン図の作成と表示
     plt.figure(figsize=(8, 6))
     venn2(subsets=(syuugoua, syuugoub), set_labels=('A', 'B'))
-    plt.title("venn diagram")  # ベン図のタイトルを設定
+    plt.title("venn diagram") 
     plt.tight_layout()
 
-    # ベン図を画像として表示
     st.pyplot(plt)
     st.write("このベン図は各集合の中にある要素の数を表しています")
 
